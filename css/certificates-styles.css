@@ -1,0 +1,244 @@
+:root {
+  --primary-color: #ff0000;
+  --secondary-color: #ffffff;
+  --text-color: #ffffff;
+  --box-bg-color: rgba(20, 20, 20, 0.6);
+  --transition: all 0.3s ease;
+  --box-outline: 2px solid #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 2;
+  color: var(--text-color);
+  background: linear-gradient(123deg, #800000 10%, #141414 50%);
+  background-size:
+    100% 100%,
+    cover;
+  background-position:
+    center,
+    0% 0%;
+  background-repeat: no-repeat, repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  background-color: #000000;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+.desktop-nav {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.desktop-nav ul {
+  list-style-type: none;
+}
+
+.desktop-nav ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.desktop-nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+}
+
+.desktop-nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  background-color: var(--text-color);
+  transition: width 0.3s ease;
+}
+
+main {
+  flex: 1;
+  padding-top: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.certificate-box {
+  background-color: var(--box-bg-color);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: var(--transition);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  outline: var(--box-outline);
+}
+
+.certificate-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.certificate-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  outline-offset: 3px;
+}
+
+.certificate-box h2 {
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.download-btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.download-btn:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1000;
+}
+
+.mobile-menu {
+  display: none;
+  position: relative;
+}
+
+.menu-toggle {
+  display: none;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  z-index: 1001;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-125%);
+}
+
+.dropdown {
+  display: none;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  background-color: rgba(0, 0, 0, 0.9);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  width: 200px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 1002;
+}
+
+.dropdown.show {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown li {
+  padding: 0;
+}
+
+.dropdown li a {
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+  padding: 12px 20px;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .certificate-grid {
+    grid-template-columns: 1fr;
+  }
+}
