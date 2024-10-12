@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const esignIcon = document.getElementById("esign-icon");
   const scarletIcon = document.getElementById("scarlet-icon");
+  const ipaIcon = document.getElementById("ipa-icon");
   const popup = document.getElementById("popup");
   const closePopup = document.querySelector(".close-popup");
   const popupTitle = document.getElementById("popup-title");
@@ -28,6 +29,24 @@ document.addEventListener("DOMContentLoaded", function () {
     { text: "Scarlet backup:", url: "#" },
   ];
 
+  const ipaOptions = {
+    "ESign IPA": [
+      { text: "Download ESign IPA", url: "https://example.com/esign-ipa" },
+    ],
+    "Scarlet IPA": [
+      { text: "Download Scarlet IPA", url: "https://example.com/scarlet-ipa" },
+    ],
+    "Spotify IPA": [
+      { text: "Download Spotify IPA", url: "https://example.com/spotify-ipa" },
+    ],
+    "Delta IPA": [
+      { text: "Download Delta IPA", url: "https://example.com/delta-ipa" },
+    ],
+    "PyonCord/Bunny IPA": [
+      { text: "Download PyonCord/Bunny IPA", url: "https://example.com/pyoncord-ipa" },
+    ],
+  };
+
   function showPopup(title, links) {
     popupTitle.textContent = title;
     popupLinks.innerHTML = "";
@@ -50,6 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   scarletIcon.addEventListener("click", () =>
     showPopup("Scarlet Install Links", scarletLinks),
+  );
+  ipaIcon.addEventListener("click", () =>
+    showPopup("Other IPA Links", [
+      { text: "Download Spotify IPA", url: ipaOptions["Spotify IPA"][0].url },
+      { text: "Download Delta IPA", url: ipaOptions["Delta IPA"][0].url },
+      { text: "Download PyonCord/Bunny IPA", url: ipaOptions["PyonCord/Bunny IPA"][0].url },
+    ]),
   );
   closePopup.addEventListener("click", hidePopup);
 
@@ -139,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   });
 
+  // Menu stuff
   menuToggle.addEventListener("click", function () {
     if (dropdown.classList.contains("show")) {
       closeDropdown();
@@ -148,10 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("click", function (event) {
-    if (
-      !dropdown.contains(event.target) &&
-      !menuToggle.contains(event.target)
-    ) {
+    if (!dropdown.contains(event.target) && !menuToggle.contains(event.target)) {
       closeDropdown();
     }
   });
@@ -195,7 +219,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.scrollY > window.innerHeight) {
       document.body.style.backgroundColor = "#000000";
     } else {
-      document.body.style.backgroundColor = "";
+            document.body.style.backgroundColor = "#ffffff";
     }
+  });
+
+  //  scrolling functions
+  document.querySelectorAll("a[href^='#']").forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
   });
 });
