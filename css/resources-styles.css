@@ -18,6 +18,13 @@ body {
   line-height: 2;
   color: var(--text-color);
   background: linear-gradient(123deg, #800000 10%, #141414 50%);
+  background-size:
+    100% 100%,
+    cover;
+  background-position:
+    center,
+    0% 0%;
+  background-repeat: no-repeat, repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -145,17 +152,12 @@ main {
   padding: 20px;
 }
 
-/* Styles for IPA Boxes */
-.ipas-container {
-    width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.esign-container {
   position: relative;
-  z-index: 1;
+  margin-bottom: 50px;
 }
 
-.ipa-box {
+.esign-box {
   background-color: var(--box-bg-color);
   border-radius: 15px;
   padding: 30px;
@@ -168,7 +170,7 @@ main {
   outline: var(--box-outline);
 }
 
-.ipa-box::before {
+.esign-box::before {
   content: "";
   position: absolute;
   top: 0;
@@ -180,11 +182,11 @@ main {
   z-index: -1;
 }
 
-.ipa-box:hover {
+.esign-box:hover {
   outline-offset: 3px;
 }
 
-.ipa-box h2 {
+.esign-box h2 {
   margin-bottom: 20px;
   color: var(--text-color);
 }
@@ -196,12 +198,12 @@ main {
   cursor: pointer;
 }
 
-.ipa-box h3 {
+.esign-box h3 {
   margin-bottom: 10px;
   color: var(--text-color);
 }
 
-.ipa-box p {
+.esign-box p {
   margin-bottom: 10px;
 }
 
@@ -345,7 +347,6 @@ footer {
   top: 50%;
   transform: translateY(-125%);
 }
-
 .dropdown {
   display: none;
   position: absolute;
@@ -360,67 +361,85 @@ footer {
   width: 200px;
   transition: all 0.3s ease;
   transform: translateY(-20px);
-   opacity: 0;
-  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .dropdown.show {
   display: block;
   transform: translateY(0);
   opacity: 1;
-  visibility: visible;
 }
 
 .dropdown li {
-  padding: 10px 20px;
+  padding: 0;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .dropdown li a {
-  color: var(--text-color);
   text-decoration: none;
+  color: #ffffff;
   display: block;
-  transition: background 0.3s;
+  padding: 12px 20px;
+  transition: all 0.2s ease;
 }
 
 .dropdown li a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  padding-left: 25px;
+  color: #ff9900;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
   }
-
+  .mobile-menu {
+    display: block;
+  }
   .menu-toggle {
     display: block;
   }
-
-  .backup-icons-slider {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .backup-icons {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .backup-icon {
-    margin: 10px 0;
+  .container {
+    padding: 0 10px;
   }
 }
 
-@media (max-width: 480px) {
-  .ipa-box h2, .ipa-box h3 {
-    font-size: 1.2em;
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none;
   }
+}
 
-  .ipa-box p {
-    font-size: 0.9em;
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-  .toggle-btn {
-    padding: 8px 15px;
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
   }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.3s forwards;
 }
